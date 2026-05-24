@@ -54,7 +54,10 @@ export default function SignUpPage() {
     setIsGoogleLoading(true)
     setError(null)
     try {
-      await signInWithGoogle()
+      const { url } = await signInWithGoogle()
+      if (url) {
+        window.location.href = url
+      }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "Failed to sign up with Google")
       setIsGoogleLoading(false)

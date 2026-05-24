@@ -42,7 +42,10 @@ export default function LoginPage() {
     setIsGoogleLoading(true)
     setError(null)
     try {
-      await signInWithGoogle()
+      const { url } = await signInWithGoogle()
+      if (url) {
+        window.location.href = url
+      }
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "Failed to sign in with Google")
       setIsGoogleLoading(false)

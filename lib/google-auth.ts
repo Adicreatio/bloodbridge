@@ -24,5 +24,9 @@ export async function signInWithGoogle() {
     throw new Error(error.message)
   }
 
+  if (!data?.url) {
+    throw new Error('Failed to initiate Google sign in. Please try again.')
+  }
+
   return data
 }
